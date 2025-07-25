@@ -1,0 +1,95 @@
+/* Menggunakan font Inter untuk keseluruhan laman */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Styling untuk memastikan laman web memenuhi skrin penuh */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Sembunyikan scrollbar */
+    background-color: #1a202c; /* Warna latar belakang gelap (Tailwind bg-gray-900) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kontainer utama untuk carousel */
+.carousel-container {
+    width: 100%; /* Lebar penuh */
+    height: 100%; /* Tinggi penuh */
+    position: relative;
+    display: flex; /* Guna flexbox untuk centering item */
+    flex-direction: column; /* Susun tajuk di atas iframe */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Setiap item slaid dalam carousel */
+.carousel-item {
+    position: absolute; /* Letakkan item di atas satu sama lain */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%); /* Slaid bermula di luar skrin ke kanan */
+    opacity: 0; /* Slaid bermula tersembunyi */
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out; /* Animasi slaid dan pudar yang lancar */
+    display: flex; /* Guna flexbox untuk center iframe di dalamnya */
+    flex-direction: column; /* Susun tajuk di atas iframe */
+    justify-content: center;
+    align-items: flex-start; /* Mengalihkan kandungan ke kiri */
+    padding-top: 2rem; /* Tambah padding di atas untuk tajuk */
+    box-sizing: border-box; /* Pastikan padding tidak menambah saiz keseluruhan */
+    z-index: 1; /* Z-index lalai */
+}
+
+/* Kelas aktif untuk menunjukkan slaid semasa */
+.carousel-item.active {
+    transform: translateX(0); /* Slaid aktif berada di tengah skrin */
+    opacity: 1; /* Slaid aktif kelihatan */
+    z-index: 2; /* Slaid aktif di atas */
+}
+
+/* Styling untuk iframe (kandungan embed) */
+iframe {
+    width: 90%; /* Lebar iframe, boleh disesuaikan */
+    height: calc(90% - 3rem); /* Tinggi iframe, tolak ruang tajuk */
+    border: none; /* Buang border iframe */
+    background-color: #ffffff; /* Latar belakang putih untuk iframe */
+    border-radius: 0.75rem; /* Sudut bulat (Tailwind rounded-xl) */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Bayangan lembut */
+    /* Pastikan iframe responsif */
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 1rem; /* Jarak antara tajuk dan iframe */
+    margin-left: 5%; /* Untuk menyelaraskan iframe dengan tajuk di kiri */
+}
+
+/* Styling untuk mesej loading */
+.loading-message {
+    color: #cbd5e0; /* Warna teks kelabu (Tailwind text-gray-300) */
+    font-size: 1.5rem; /* Saiz teks */
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* Pastikan di atas iframe */
+}
+
+/* Styling untuk tajuk embed */
+.embed-title {
+    color: #e2e8f0; /* Warna teks putih keabu-abuan (Tailwind text-gray-200) */
+    font-size: 2.5rem; /* Saiz teks yang lebih besar */
+    font-weight: bold; /* Teks tebal */
+    text-align: left; /* Mengalihkan teks ke kiri */
+    margin-bottom: 1rem; /* Jarak bawah tajuk */
+    z-index: 5; /* Pastikan di atas iframe tetapi di bawah loading message */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks untuk keterlihatan */
+    width: 90%; /* Pastikan tajuk mengambil lebar yang sama dengan iframe */
+    padding-left: 5%; /* Tambah padding kiri untuk menyelaraskan dengan iframe */
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+}
